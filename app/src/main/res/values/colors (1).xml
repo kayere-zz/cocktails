@@ -1,0 +1,15 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<resources>
+  <color name="primaryColor">#ebedef</color>
+  <color name="primaryLightColor">#ffffff</color>
+  <color name="primaryDarkColor">#b9bbbd</color>
+  <color name="secondaryColor">#2c3e50</color>
+  <color name="secondaryLightColor">#57687c</color>
+  <color name="secondaryDarkColor">#031828</color>
+  <color name="primaryTextColor">#000000</color>
+  <color name="secondaryTextColor">#ffffff</color>
+  <!--night-->
+  <color name="primaryNightColor">#1c2833</color>
+  <color name="primaryNightDarkColor">#00000c</color>
+  <color name="PrimaryNightLightColor">#44505c</color>
+</resources>

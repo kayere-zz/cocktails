@@ -10,6 +10,9 @@ interface CocktailDbEndpoints {
     @GET("lookup.php")
     suspend fun getDrinks(@Query("i") key: Int): Drinks
 
+    @GET("search.php")
+    suspend fun getFirstDrinks(@Query("f") key: String): Drinks
+
     @GET("search.php?")
     suspend fun searchDrink(@Query("s") key: String): Drinks
 

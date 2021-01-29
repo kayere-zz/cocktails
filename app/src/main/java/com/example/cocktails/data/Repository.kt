@@ -13,6 +13,8 @@ class Repository(private val drinksDao: DrinksDao, private val ingredientsDao: I
 
     suspend fun getDrinks(key: Int): Drinks = CocktailDbService.api.getDrinks(key)
 
+    suspend fun getFirstDrinks(key: String): Drinks = CocktailDbService.api.getFirstDrinks(key)
+
     suspend fun addDrink(drink: Drink) = drinksDao.addDrink(drink)
 
     fun drinks(): Flow<List<Drink>> = drinksDao.getDrinks()

@@ -19,19 +19,15 @@ class MainActivity : AppCompatActivity() {
 
         val db = DrinksDb.getDatabase(this)
         val repo = Repository(db.drinkDao(), db.ingredientsDao())
-        GlobalScope.launch(Dispatchers.Default) {
-            (11000..200000).map {
+
+        GlobalScope.launch {
+            ('a'..'z').map {
                 GlobalScope.launch {
                     try {
-                        val drinks = repo.getDrinks(it).drinks
-                        drinks?.let {
-                            for (drink in it){
-                                repo.addDrink(drink)
-                            }
-                        }
-                    } catch (e: Exception){
-                        Log.e("MainActivity", "onCreate: $e")
+                        val drinks = repo.getFirstDrinks(it.toString()).drinks
+                        drinks?.let { for (drink in it){ repo.addDrink(it[0]) } }
                     }
+                    catch (e: Exception){ Log.e("MainActivity", "onCreate: $e") }
                 }
             }
         }

@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Theme.Cocktails" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryNightColor</item>
@@ -12,6 +13,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:windowLightStatusBar">false</item>
+        <!-- Navigation bar-->
+        <item name="android:navigationBarColor">@color/primaryNightColor</item>
+        <item name="android:windowLightNavigationBar">false</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
