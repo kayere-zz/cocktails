@@ -1,5 +1,7 @@
 package com.example.cocktails.data.models
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -28,7 +30,7 @@ data class Drink(
     @SerializedName("strDrinkFR")
     val drinkNameFR: String?,
     @SerializedName("strDrinkThumb")
-    val drinkImage: String?,
+    val drinkThumb: String?,
     @SerializedName("strDrinkZH-HANS")
     val strDrinkZHHANS: String?,
     @SerializedName("strDrinkZH-HANT")
@@ -117,4 +119,135 @@ data class Drink(
     val tags: String?,
     @SerializedName("strVideo")
     val video: String?
-)
+): Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString()!!,
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
+    ) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(dateModified)
+        parcel.writeString(drinkId)
+        parcel.writeString(alcoholic)
+        parcel.writeString(category)
+        parcel.writeString(creativeCommonsConfirmed)
+        parcel.writeString(drinkName)
+        parcel.writeString(drinkNameAlternate)
+        parcel.writeString(drinkNameDE)
+        parcel.writeString(drinkNameES)
+        parcel.writeString(drinkNameFR)
+        parcel.writeString(drinkThumb)
+        parcel.writeString(strDrinkZHHANS)
+        parcel.writeString(strDrinkZHHANT)
+        parcel.writeString(glass)
+        parcel.writeString(strIBA)
+        parcel.writeString(imageAttribution)
+        parcel.writeString(imageSource)
+        parcel.writeString(ingredient1)
+        parcel.writeString(ingredient2)
+        parcel.writeString(ingredient3)
+        parcel.writeString(ingredient4)
+        parcel.writeString(ingredient5)
+        parcel.writeString(ingredient6)
+        parcel.writeString(ingredient7)
+        parcel.writeString(ingredient8)
+        parcel.writeString(ingredient9)
+        parcel.writeString(ingredient10)
+        parcel.writeString(ingredient11)
+        parcel.writeString(ingredient12)
+        parcel.writeString(ingredient13)
+        parcel.writeString(ingredient14)
+        parcel.writeString(ingredient15)
+        parcel.writeString(instructions)
+        parcel.writeString(instructionsDE)
+        parcel.writeString(instructionsES)
+        parcel.writeString(instructionsFR)
+        parcel.writeString(instructionsZHHANS)
+        parcel.writeString(instructionsZHHANT)
+        parcel.writeString(measure1)
+        parcel.writeString(measure10)
+        parcel.writeString(measure11)
+        parcel.writeString(measure12)
+        parcel.writeString(measure13)
+        parcel.writeString(measure14)
+        parcel.writeString(measure15)
+        parcel.writeString(measure2)
+        parcel.writeString(measure3)
+        parcel.writeString(measure4)
+        parcel.writeString(measure5)
+        parcel.writeString(measure6)
+        parcel.writeString(measure7)
+        parcel.writeString(measure8)
+        parcel.writeString(measure9)
+        parcel.writeString(tags)
+        parcel.writeString(video)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Drink> {
+        override fun createFromParcel(parcel: Parcel): Drink {
+            return Drink(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Drink?> {
+            return arrayOfNulls(size)
+        }
+    }
+}

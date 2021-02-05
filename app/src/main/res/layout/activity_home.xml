@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
+    tools:context=".ui.home_activity.HomeActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liftOnScroll="true"
+        android:background="?attr/colorPrimary">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:padding="0dp"
+            app:menu="@menu/menu">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.8"
+                android:fontFamily="@font/times_new_roman"
+                android:text="@string/app_name"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:scrollbarSize="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:checkable="false"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="10dp"
+                app:cardMaxElevation="10dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/search_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:alpha="0.3"
+                        android:fontFamily="@font/gotham_bold"
+                        android:text="@string/search_drinks"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/search_badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:alpha="0.4"
+                        android:contentDescription="@string/search_icon"
+                        android:src="@drawable/ic_search"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/drink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:alpha="0.9"
+                android:fontFamily="@font/gotham_bold"
+                android:text="@string/drinks"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+            <TextView
+                android:id="@+id/collection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:alpha="0.7"
+                android:fontFamily="@font/gotham_book"
+                android:text="@string/collections"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="@+id/drink"
+                app:layout_constraintTop_toBottomOf="@+id/drink" />
+
+            <TextView
+                android:id="@+id/all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/gotham_book"
+                android:text="@string/all"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/collection"
+                app:layout_constraintTop_toBottomOf="@+id/collection" />
+
+            <TextView
+                android:id="@+id/alcoholic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:alpha="0.5"
+                android:fontFamily="@font/gotham_book"
+                android:text="@string/alcoholic"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/all"
+                app:layout_constraintStart_toEndOf="@+id/all"
+                app:layout_constraintTop_toTopOf="@+id/all" />
+
+            <TextView
+                android:id="@+id/non_alcoholic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:alpha="0.5"
+                android:fontFamily="@font/gotham_book"
+                android:text="@string/non_alcoholic"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/alcoholic"
+                app:layout_constraintStart_toEndOf="@+id/alcoholic"
+                app:layout_constraintTop_toTopOf="@+id/alcoholic" />
+
+            <ImageView
+                android:id="@+id/more"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_marginEnd="10dp"
+                android:alpha="0.9"
+                android:contentDescription="@string/next"
+                android:src="@drawable/ic_next"
+                android:text="@string/more"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/non_alcoholic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/non_alcoholic"
+                android:focusable="true" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/drinks"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/non_alcoholic"
+                tools:listitem="@layout/drink_item" />
+
+            <TextView
+                android:id="@+id/cocktails_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:alpha="0.7"
+                android:fontFamily="@font/gotham_book"
+                android:text="@string/app_name"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/drinks" />
+
+            <ImageView
+                android:id="@+id/more_cocktails"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cocktails_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cocktails_label"
+                app:srcCompat="@drawable/ic_next"
+                android:contentDescription="@string/more_cocktails" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cocktails"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cocktails_label"
+                tools:listitem="@layout/drink_item" />
+
+
+            <TextView
+                android:id="@+id/ordinary_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:alpha="0.7"
+                android:fontFamily="@font/gotham_book"
+                android:text="@string/ordinary_drinks"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cocktails" />
+
+            <ImageView
+                android:id="@+id/more_drinks"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/ordinary_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ordinary_label"
+                app:srcCompat="@drawable/ic_next"
+                android:contentDescription="@string/more_ordinary_drinks" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ordinary_drinks"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ordinary_label"
+                tools:listitem="@layout/drink_item" />
+
+            <TextView
+                android:id="@+id/ingredients_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:alpha="0.7"
+                android:fontFamily="@font/gotham_book"
+                android:text="@string/ingredients"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ordinary_drinks" />
+
+            <ImageView
+                android:id="@+id/more_ingredients"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/ingredients_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ingredients_label"
+                app:srcCompat="@drawable/ic_next"
+                android:contentDescription="@string/more_ordinary_drinks" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ingredients"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ingredients_label"
+                tools:listitem="@layout/ingredient_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

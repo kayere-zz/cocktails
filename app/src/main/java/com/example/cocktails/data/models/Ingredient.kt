@@ -16,7 +16,8 @@ data class Ingredient(
     @SerializedName("strDescription")
     val description: String?,
     @SerializedName("strIngredient")
-    val ingredient: String?,
+    val name: String?,
     @SerializedName("strType")
-    val type: String?
+    val type: String?,
+    var thumb: String?
 )

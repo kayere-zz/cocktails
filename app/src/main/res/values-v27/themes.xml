@@ -16,6 +16,27 @@
         <!-- Navigation bar-->
         <item name="android:navigationBarColor">@color/primaryColor</item>
         <item name="android:windowLightNavigationBar">true</item>
+
+        <item name="android:windowActivityTransitions">true</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.CocktailsTranslucentStatusBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryLightColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+        <!-- Status bar color. -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <!-- Navigation bar-->
+        <item name="android:navigationBarColor">@color/primaryColor</item>
+        <item name="android:windowLightNavigationBar">true</item>
+
+        <item name="android:windowActivityTransitions">true</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

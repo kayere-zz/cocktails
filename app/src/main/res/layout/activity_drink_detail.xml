@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionName="card to detail"
+    android:background="?attr/colorPrimary"
+    android:theme="@style/Theme.CocktailsTranslucentStatusBar"
+    tools:context=".ui.drink_detail_activity.DrinkDetailActivity">
+
+    <ImageView
+        android:id="@+id/drink_thumb"
+        android:layout_width="0dp"
+        android:layout_height="380dp"
+        android:contentDescription="@string/drink_thumb"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="330dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/drink_thumb">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/drink_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/gotham_bold"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Drink name" />
+
+            <TextView
+                android:id="@+id/drink_glass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/gotham_book"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/drink_name"
+                app:layout_constraintTop_toBottomOf="@id/drink_name"
+                tools:text="Glass" />
+
+            <TextView
+                android:id="@+id/ingredients_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:alpha="0.7"
+                android:fontFamily="@font/gotham_book"
+                android:text="@string/ingredients"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/drink_glass"
+                app:layout_constraintTop_toBottomOf="@+id/drink_glass" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ingredients_label"
+                tools:listitem="@layout/ingredient_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

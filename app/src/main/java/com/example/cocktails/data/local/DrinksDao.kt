@@ -15,4 +15,16 @@ interface DrinksDao {
 
     @Query("SELECT * FROM drinks_table")
     fun getDrinks(): Flow<List<Drink>>
+
+    @Query("SELECT * FROM drinks_table WHERE drinkId LIKE :id")
+    suspend fun getDrink(id: String): Drink
+
+    @Query("SELECT COUNT(*) FROM drinks_table")
+    suspend fun getCount(): Int
+
+    @Query("SELECT * FROM drinks_table WHERE alcoholic LIKE :alcohol")
+    fun filterDrinkByAlcohol(alcohol: String): Flow<List<Drink>>
+
+    @Query("SELECT * FROM drinks_table WHERE category LIKE :category")
+    fun filterDrinkByCategory(category:String): Flow<List<Drink>>
 }

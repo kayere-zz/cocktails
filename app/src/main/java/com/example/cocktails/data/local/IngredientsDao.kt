@@ -15,4 +15,7 @@ interface IngredientsDao {
 
     @Query("SELECT * FROM ingredient_table")
     fun getIngredients(): Flow<List<Ingredient>>
+
+    @Query("SELECT * FROM ingredient_table WHERE name LIKE :name")
+    suspend fun getIngredientByName(name: String): Ingredient?
 }

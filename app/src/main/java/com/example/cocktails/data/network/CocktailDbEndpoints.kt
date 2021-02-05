@@ -8,10 +8,10 @@ import retrofit2.http.Query
 interface CocktailDbEndpoints {
 
     @GET("lookup.php")
-    suspend fun getDrinks(@Query("i") key: Int): Drinks
+    suspend fun getDrink(@Query("i") key: Int): Drinks
 
     @GET("search.php")
-    suspend fun getFirstDrinks(@Query("f") key: String): Drinks
+    suspend fun getDrinks(@Query("f") key: String): Drinks
 
     @GET("search.php?")
     suspend fun searchDrink(@Query("s") key: String): Drinks
