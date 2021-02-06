@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.cocktails.R
 import com.example.cocktails.data.models.Ingredient
 import com.example.cocktails.databinding.IngredientItemBinding
 
@@ -15,7 +16,9 @@ class IngredientAdapter(var ingredients: List<Ingredient>): RecyclerView.Adapter
     override fun onBindViewHolder(holder: IngredientViewHolder, position: Int) {
         holder.binding.apply {
             ingredientName.text = ingredients[position].name
-            ingredientThumb.load(ingredients[position].thumb)
+            ingredientThumb.load(ingredients[position].thumb){
+                placeholder(R.drawable.loader)
+            }
         }
     }
 

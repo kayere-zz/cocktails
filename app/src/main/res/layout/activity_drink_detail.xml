@@ -23,7 +23,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="330dp"
+        android:layout_marginTop="350dp"
         android:background="@drawable/rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/gotham_book"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/drink_name"
                 app:layout_constraintTop_toBottomOf="@id/drink_name"
@@ -63,24 +64,52 @@
                 android:id="@+id/ingredients_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:alpha="0.7"
-                android:fontFamily="@font/gotham_book"
-                android:text="@string/ingredients"
+                android:layout_marginTop="17dp"
+                android:alpha="0.8"
+                android:fontFamily="@font/gotham_bold"
                 android:textColor="?attr/colorOnPrimary"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="@+id/drink_glass"
-                app:layout_constraintTop_toBottomOf="@+id/drink_glass" />
+                app:layout_constraintTop_toBottomOf="@+id/drink_glass"
+                tools:text="@string/ingredients" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ingredients_label"
                 tools:listitem="@layout/ingredient_item" />
 
+            <TextView
+                android:id="@+id/instructions_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.8"
+                android:fontFamily="@font/gotham_bold"
+                android:text="@string/instructions"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/drink_glass"
+                app:layout_constraintTop_toBottomOf="@+id/ingredients" />
+
+            <TextView
+                android:id="@+id/instructions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnPrimary"
+                android:fontFamily="@font/gotham_book"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/instructions_label"
+                app:layout_constraintTop_toBottomOf="@id/instructions_label" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

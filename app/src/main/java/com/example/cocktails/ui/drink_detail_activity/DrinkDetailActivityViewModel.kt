@@ -20,13 +20,12 @@ class DrinkDetailActivityViewModel(private val repository: Repository): ViewMode
         val ingredients = ArrayList<Ingredient>()
         // getting names of ingredients form the drink
         val ingredientNames = drink.toString().split(" ")
-            .filter { it.contains("ingredient") }
-            .dropLast(1)
-            .map {
-                it.replace(",", "")
-                it.split("=")[1]
-            }
-            .map { it.replace(",", "") }
+                .filter { it.contains("ingredient") }.dropLast(1)
+                .map {
+                    it.replace(",", "")
+                    it.split("=")[1]
+                }
+                .map { it.replace(",", "") }.toSortedSet()
         // fetching ingredients from the database using their names
         for (name in ingredientNames) {
             if (name != "null") {
@@ -44,6 +43,7 @@ class DrinkDetailActivityViewModel(private val repository: Repository): ViewMode
 class DrinkDetailActivityViewModelFactory(private val repository: Repository): ViewModelProvider.Factory{
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DrinkDetailActivityViewModel::class.java)){
+            @Suppress("UNCHECKED_CAST")
             return DrinkDetailActivityViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown view model class")

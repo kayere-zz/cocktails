@@ -8,21 +8,21 @@
 
     <ImageView
         android:id="@+id/ingredient_thumb"
-        android:layout_width="120dp"
-        android:layout_height="140dp"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
         android:layout_marginTop="15dp"
+        android:contentDescription="@string/ingredient_thumb"
         android:elevation="11dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/materialCardView2"
         app:layout_constraintStart_toStartOf="@+id/materialCardView2"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic"
-        android:contentDescription="@string/ingredient_thumb" />
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView2"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="10dp"
         app:cardCornerRadius="10dp"

@@ -16,25 +16,12 @@ import com.example.cocktails.work.Work
 
 class HomeActivityViewModel(private val repository: Repository, private val context: Context): ViewModel() {
 
-    val drinks: LiveData<List<Drink>> = repository.drinks().asLiveData()
-    val alcoholDrinks: LiveData<List<Drink>> = repository.filterDrinkByAlcohol("Non Alcoholic").asLiveData()
-    val nonAlcoholDrinks: LiveData<List<Drink>> = repository.filterDrinkByAlcohol("Non Alcoholic").asLiveData()
-    val cocktails: LiveData<List<Drink>> = repository.filterDrinkByCategory("Cocktail").asLiveData()
-    val ordinaryDrinks: LiveData<List<Drink>> = repository.filterDrinkByCategory("Ordinary Drink").asLiveData()
-    val ingredients: LiveData<List<Ingredient>> = repository.getIngredients().asLiveData()
-
-    suspend fun checkDb() {
-        if (repository.getCount() < 400){
-            val wm = WorkManager.getInstance(context)
-            val constraints = Constraints.Builder()
-                .setRequiredNetworkType(NetworkType.CONNECTED)
-                .build()
-            val work = OneTimeWorkRequest.Builder(Work::class.java)
-                .setConstraints(constraints)
-                .build()
-            wm.enqueue(work)
-        }
-    }
+    suspend fun homeDrinks(): List<Drink> = repository.drinks()
+    suspend fun alcoholDrinks(): List<Drink> = repository.getAlcoholicDrinks("Non Alcoholic")
+    suspend fun nonAlcoholDrinks(): List<Drink> = repository.getAlcoholicDrinks("Non Alcoholic")
+    suspend fun cocktails(): List<Drink> = repository.filterHomeDrinkByCategory("Cocktail")
+    suspend fun ordinaryDrinks(): List<Drink> = repository.filterHomeDrinkByCategory("Ordinary Drink")
+    suspend fun ingredients(): List<Ingredient> = repository.getHomeIngredients()
 
 }
 
@@ -43,6 +30,7 @@ class HomeActivityViewModelFactory(private val repository: Repository, private v
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeActivityViewModel::class.java)){
+            @Suppress("UNCHECKED_CAST")
             return HomeActivityViewModel(repository, context) as T
         }
         throw IllegalArgumentException("Unknown view model class")

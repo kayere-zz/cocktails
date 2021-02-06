@@ -31,12 +31,21 @@
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <!-- Status bar color. -->
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowLightStatusBar">false</item>
         <!-- Navigation bar-->
         <item name="android:navigationBarColor">@color/primaryColor</item>
         <item name="android:windowLightNavigationBar">true</item>
 
         <item name="android:windowActivityTransitions">true</item>
         <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.CocktailSplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:background">@color/primaryColor</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+        <item name="android:statusBarColor">@color/primaryColor</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/primaryColor</item>
     </style>
 </resources>

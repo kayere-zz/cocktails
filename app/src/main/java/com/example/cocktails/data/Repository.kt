@@ -18,7 +18,7 @@ class Repository(private val drinksDao: DrinksDao, private val ingredientsDao: I
 
     suspend fun addDrink(drink: Drink) = drinksDao.addDrink(drink)
 
-    fun drinks(): Flow<List<Drink>> = drinksDao.getDrinks()
+    suspend fun drinks(): List<Drink> = drinksDao.getHomeDrinks()
 
     suspend fun searchDrink(key: String): Drinks = api.searchDrink(key)
 
@@ -28,11 +28,17 @@ class Repository(private val drinksDao: DrinksDao, private val ingredientsDao: I
 
     fun getIngredients(): Flow<List<Ingredient>> = ingredientsDao.getIngredients()
 
+    suspend fun getHomeIngredients(): List<Ingredient> = ingredientsDao.getHomeIngredients()
+
     suspend fun getCount(): Int = drinksDao.getCount()
 
     fun filterDrinkByCategory(category: String): Flow<List<Drink>> = drinksDao.filterDrinkByCategory(category)
 
     fun filterDrinkByAlcohol(alcohol: String): Flow<List<Drink>> = drinksDao.filterDrinkByAlcohol(alcohol)
+
+    suspend fun filterHomeDrinkByCategory(category: String): List<Drink> = drinksDao.filterHomeDrinksByCategory(category)
+
+    suspend fun getAlcoholicDrinks(alcohol: String): List<Drink> = drinksDao.getAlcoholicDrinks(alcohol)
 
     suspend fun getIngredientByName(name: String): Ingredient? = ingredientsDao.getIngredientByName(name)
 }

@@ -35,4 +35,14 @@
         <item name="android:windowActivityTransitions">true</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="Theme.CocktailSplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:background">@color/primaryNightColor</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryNightColor</item>
+        <item name="colorOnPrimary">@color/secondaryTextColor</item>
+        <item name="android:statusBarColor">@color/primaryNightColor</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/primaryNightColor</item>
+    </style>
 </resources>

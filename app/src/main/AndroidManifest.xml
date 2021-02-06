@@ -11,8 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cocktails">
-        <activity android:name=".ui.drink_detail_activity.DrinkDetailActivity" />
-        <activity android:name=".ui.home_activity.HomeActivity">
+        <activity android:name=".ui.home_activity.HomeActivity" />
+        <activity android:name=".ui.drink_detail_activity.DrinkDetailActivity"
+            android:theme="@style/Theme.CocktailsTranslucentStatusBar"/>
+        <activity android:name=".ui.splash_activity.SplashActivity"
+            android:theme="@style/Theme.CocktailSplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
