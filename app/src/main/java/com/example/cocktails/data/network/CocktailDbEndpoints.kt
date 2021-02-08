@@ -18,4 +18,7 @@ interface CocktailDbEndpoints {
 
     @GET("lookup.php?")
     suspend fun lookupIngredient(@Query("iid") id: Int): Ingredients
+
+    @GET("search.php?")
+    suspend fun searchIngredient(@Query("i") name: String): Ingredients
 }

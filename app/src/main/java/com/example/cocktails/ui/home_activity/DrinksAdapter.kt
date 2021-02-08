@@ -36,6 +36,7 @@ class DrinksAdapter(private var drinks: List<Drink>, private val activity: HomeA
             drinkGlass.text = drinks[position].glass
             drinkThumb.load(drinks[position].drinkThumb){
                 placeholder(R.drawable.loader)
+                error(R.drawable.ic_image_failed)
             }
         }
     }

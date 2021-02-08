@@ -41,4 +41,6 @@ class Repository(private val drinksDao: DrinksDao, private val ingredientsDao: I
     suspend fun getAlcoholicDrinks(alcohol: String): List<Drink> = drinksDao.getAlcoholicDrinks(alcohol)
 
     suspend fun getIngredientByName(name: String): Ingredient? = ingredientsDao.getIngredientByName(name)
+
+    suspend fun searchIngredient(name: String): Ingredients = api.searchIngredient(name)
 }

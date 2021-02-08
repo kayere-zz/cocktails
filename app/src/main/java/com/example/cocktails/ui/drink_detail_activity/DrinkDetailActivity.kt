@@ -1,7 +1,11 @@
 package com.example.cocktails.ui.drink_detail_activity
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.os.Bundle
-import android.util.Log
+import android.view.View
+import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -36,7 +40,7 @@ class DrinkDetailActivity : AppCompatActivity() {
         val db = DrinksDb.getDatabase(this)
         val repository = Repository(db.drinkDao(), db.ingredientsDao())
 
-        viewModel = ViewModelProvider(this, DrinkDetailActivityViewModelFactory(repository))
+        viewModel = ViewModelProvider(this, DrinkDetailActivityViewModelFactory(repository, this))
             .get(DrinkDetailActivityViewModel::class.java)
 
         if (viewModel.drink == null) viewModel.drink = intent.getParcelableExtra("drink")
@@ -47,21 +51,59 @@ class DrinkDetailActivity : AppCompatActivity() {
             }
             drinkName.text = viewModel.drink?.drinkName
             drinkGlass.text = viewModel.drink?.glass
+            instructionsLabel.alpha = 0F
+            instructions.alpha = 0F
+            ingredientsLabel.alpha = 0F
             ingredients.layoutManager = GridLayoutManager(this@DrinkDetailActivity, 3)
             instructions.text = viewModel.drink?.instructions
         }
 
         lifecycleScope.launch {
-            delay(400L)
+            delay(350L)
+            val fade = PropertyValuesHolder.ofFloat(View.ALPHA, 0F, 1F)
+            val moveUp = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 100F, 0F)
+            val ingredientAnim = ObjectAnimator.ofPropertyValuesHolder(binding.ingredients, fade, moveUp).apply {
+                duration = 300L
+                interpolator = DecelerateInterpolator()
+            }
+            val ingredientLabelAnim = ObjectAnimator.ofPropertyValuesHolder(binding.ingredientsLabel, fade, moveUp).apply {
+                duration = 300L
+                interpolator = DecelerateInterpolator()
+            }
+            val instructionsLabelAnim = ObjectAnimator.ofPropertyValuesHolder(binding.instructionsLabel, fade, moveUp).apply {
+                duration = 300L
+                interpolator = DecelerateInterpolator()
+            }
+            val instructionsAnim = ObjectAnimator.ofPropertyValuesHolder(binding.instructions, fade, moveUp).apply {
+                duration = 300L
+                interpolator = DecelerateInterpolator()
+            }
+            val animSet = AnimatorSet()
+            animSet.playTogether(ingredientAnim, ingredientLabelAnim, instructionsLabelAnim, instructionsAnim)
+
+            var firstFetch = true
             viewModel.fetchIngredients.observe(this@DrinkDetailActivity, {
-                Log.d("TAG", "onCreate: ${it.size}")
-                when (it.size) {
-                    0 -> binding.ingredientsLabel.text = getString(R.string.ingredient_absent)
-                    1 -> {
-                        binding.ingredientsLabel.text = getString(R.string.ingredient)
-                        binding.ingredients.adapter = SmallIngredientAdapter(it)
+                if (firstFetch) {
+                    firstFetch = false
+                    when (it.size) {
+                        0 -> {
+                            binding.ingredientsLabel.text = getString(R.string.ingredient_absent)
+                            animSet.start()
+                        }
+                        1 -> {
+                            binding.ingredientsLabel.text = getString(R.string.ingredient)
+                            binding.ingredients.adapter = SmallIngredientAdapter(it)
+                            animSet.start()
+                        }
+                        else -> {
+                            binding.ingredientsLabel.text = getString(R.string.ingredients)
+                            binding.ingredients.adapter = SmallIngredientAdapter(it)
+                            animSet.start()
+                        }
                     }
-                    else -> {
+                }
+                else {
+                    if (it.size > 1){
                         binding.ingredientsLabel.text = getString(R.string.ingredients)
                         binding.ingredients.adapter = SmallIngredientAdapter(it)
                     }

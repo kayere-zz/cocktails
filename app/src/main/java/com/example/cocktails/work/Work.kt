@@ -15,7 +15,7 @@ import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class Work(context: Context, workerParameters: WorkerParameters)
+class Work(private val context: Context, workerParameters: WorkerParameters)
     : CoroutineWorker(context, workerParameters) {
 
     private val db = DrinksDb.getDatabase(context)
@@ -39,6 +39,7 @@ class Work(context: Context, workerParameters: WorkerParameters)
                         repository.addDrink(drink)
                     }
                 }
+
             }
             catch (e: Exception){
                 return Result.retry()

@@ -40,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginEnd="25dp"
                 android:fontFamily="@font/gotham_bold"
                 android:textColor="?attr/colorOnPrimary"
                 android:textSize="20sp"
@@ -62,13 +63,15 @@
 
             <TextView
                 android:id="@+id/ingredients_label"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
+                android:layout_marginEnd="25dp"
                 android:alpha="0.8"
                 android:fontFamily="@font/gotham_bold"
                 android:textColor="?attr/colorOnPrimary"
                 android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/drink_glass"
                 app:layout_constraintTop_toBottomOf="@+id/drink_glass"
                 tools:text="@string/ingredients" />
@@ -79,6 +82,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:minHeight="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ingredients_label"

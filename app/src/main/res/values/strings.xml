@@ -23,6 +23,6 @@
     <string name="drink_transition_name">drink transition name</string>
     <string name="ingredient_thumb">ingredient thumb</string>
     <string name="ingredient">Ingredient</string>
-    <string name="ingredient_absent">No ingredient found</string>
+    <string name="ingredient_absent">No ingredient found, checking online…</string>
     <string name="instructions">Instructions</string>
 </resources>
