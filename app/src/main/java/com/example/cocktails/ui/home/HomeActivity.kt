@@ -1,18 +1,14 @@
-package com.example.cocktails.ui.home_activity
+package com.example.cocktails.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.cocktails.R
 import com.example.cocktails.data.Repository
 import com.example.cocktails.data.local.DrinksDb
 import com.example.cocktails.databinding.ActivityHomeBinding
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.google.android.material.transition.platform.MaterialSharedAxis
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
@@ -37,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
                 drinks.adapter = DrinksAdapter(viewModel.homeDrinks().shuffled(), this@HomeActivity)
                 cocktails.adapter = DrinksAdapter(viewModel.cocktails().shuffled(), this@HomeActivity)
                 ordinaryDrinks.adapter = DrinksAdapter(viewModel.ordinaryDrinks().shuffled(), this@HomeActivity)
-                ingredients.adapter = IngredientAdapter(viewModel.ingredients().shuffled())
+                ingredients.adapter = IngredientAdapter(viewModel.ingredients().shuffled(), this@HomeActivity)
             }
         }
     }

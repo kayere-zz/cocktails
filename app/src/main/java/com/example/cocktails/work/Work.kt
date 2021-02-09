@@ -53,8 +53,7 @@ class Work(private val context: Context, workerParameters: WorkerParameters)
             try {
                 val ingredients = repository.lookupIngredient(it).ingredients
                 ingredients?.let {
-                    ingredients[0].thumb = "https://www.thecocktaildb.com/images/ingredients/" +
-                            ingredients[0].name + "-medium.png"
+                    ingredients[0].thumb = "https://www.thecocktaildb.com/images/ingredients/${ingredients[0].name}-medium.png"
                     repository.addIngredient(ingredients[0])
                 }
             }
@@ -66,3 +65,4 @@ class Work(private val context: Context, workerParameters: WorkerParameters)
     }
 
 }
+

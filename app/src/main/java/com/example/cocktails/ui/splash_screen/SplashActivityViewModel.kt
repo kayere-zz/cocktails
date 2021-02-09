@@ -1,4 +1,4 @@
-package com.example.cocktails.ui.splash_activity
+package com.example.cocktails.ui.splash_screen
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

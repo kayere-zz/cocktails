@@ -4,23 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
+    android:background="?android:selectableItemBackground"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/ingredient_thumb"
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="15dp"
         android:contentDescription="@string/ingredient_thumb"
         android:elevation="11dp"
         android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="@+id/materialCardView2"
-        app:layout_constraintStart_toStartOf="@+id/materialCardView2"
+        app:layout_constraintEnd_toEndOf="@+id/ingredient_card"
+        app:layout_constraintStart_toStartOf="@+id/ingredient_card"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView2"
+        android:id="@+id/ingredient_card"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginTop="40dp"

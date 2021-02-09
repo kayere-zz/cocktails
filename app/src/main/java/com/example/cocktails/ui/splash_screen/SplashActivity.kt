@@ -1,17 +1,15 @@
-package com.example.cocktails.ui.splash_activity
+package com.example.cocktails.ui.splash_screen
 
 import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.cocktails.R
 import com.example.cocktails.data.Repository
 import com.example.cocktails.data.local.DrinksDb
 import com.example.cocktails.databinding.ActivitySplashBinding
-import com.example.cocktails.ui.home_activity.HomeActivity
+import com.example.cocktails.ui.home.HomeActivity
 import com.google.android.material.transition.platform.MaterialSharedAxis
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

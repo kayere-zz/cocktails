@@ -24,7 +24,7 @@ class Repository(private val drinksDao: DrinksDao, private val ingredientsDao: I
 
     suspend fun lookupIngredient(id: Int): Ingredients = api.lookupIngredient(id)
 
-    suspend fun addIngredient(ingredient: Ingredient) = ingredientsDao.addIngredient(ingredient)
+    suspend fun addIngredient(ingredient: Ingredient): Long = ingredientsDao.addIngredient(ingredient)
 
     fun getIngredients(): Flow<List<Ingredient>> = ingredientsDao.getIngredients()
 

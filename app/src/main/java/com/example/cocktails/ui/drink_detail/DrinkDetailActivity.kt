@@ -1,4 +1,4 @@
-package com.example.cocktails.ui.drink_detail_activity
+package com.example.cocktails.ui.drink_detail
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator

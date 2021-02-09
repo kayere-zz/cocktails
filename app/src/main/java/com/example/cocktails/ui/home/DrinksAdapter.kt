@@ -1,18 +1,15 @@
-package com.example.cocktails.ui.home_activity
+package com.example.cocktails.ui.home
 
-import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
 import android.app.ActivityOptions
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.cocktails.R
 import com.example.cocktails.data.models.Drink
 import com.example.cocktails.databinding.DrinkItemBinding
-import com.example.cocktails.ui.drink_detail_activity.DrinkDetailActivity
+import com.example.cocktails.ui.drink_detail.DrinkDetailActivity
 
 class DrinksAdapter(private var drinks: List<Drink>, private val activity: HomeActivity) : RecyclerView.Adapter<DrinksViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinksViewHolder =

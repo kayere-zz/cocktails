@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface IngredientsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addIngredient(ingredient: Ingredient)
+    suspend fun addIngredient(ingredient: Ingredient): Long
 
     @Query("SELECT * FROM ingredient_table")
     fun getIngredients(): Flow<List<Ingredient>>
@@ -19,6 +19,6 @@ interface IngredientsDao {
     @Query("SELECT * FROM ingredient_table")
     suspend fun getHomeIngredients(): List<Ingredient>
 
-    @Query("SELECT * FROM ingredient_table WHERE name LIKE :name")
+    @Query("SELECT * FROM ingredient_table WHERE name = :name")
     suspend fun getIngredientByName(name: String): Ingredient?
 }

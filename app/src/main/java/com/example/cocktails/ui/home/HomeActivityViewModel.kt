@@ -1,18 +1,11 @@
-package com.example.cocktails.ui.home_activity
+package com.example.cocktails.ui.home
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
-import androidx.work.Constraints
-import androidx.work.NetworkType
-import androidx.work.OneTimeWorkRequest
-import androidx.work.WorkManager
 import com.example.cocktails.data.Repository
 import com.example.cocktails.data.models.Drink
 import com.example.cocktails.data.models.Ingredient
-import com.example.cocktails.work.Work
 
 class HomeActivityViewModel(private val repository: Repository, private val context: Context): ViewModel() {
 
