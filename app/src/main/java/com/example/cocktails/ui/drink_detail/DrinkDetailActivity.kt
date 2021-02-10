@@ -1,18 +1,16 @@
 package com.example.cocktails.ui.drink_detail
 
-import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cocktails.R
-import com.example.cocktails.animatePropertyValueHolder
+import com.example.cocktails.animatePropertyValuesHolder
 import com.example.cocktails.data.Repository
 import com.example.cocktails.data.local.DrinksDb
 import com.example.cocktails.databinding.ActivityDrinkDetailBinding
