@@ -10,6 +10,7 @@ import com.example.cocktails.data.Repository
 import com.example.cocktails.data.local.DrinksDb
 import com.example.cocktails.databinding.ActivitySplashBinding
 import com.example.cocktails.ui.home.HomeActivity
+import com.google.android.material.transition.platform.MaterialFadeThrough
 import com.google.android.material.transition.platform.MaterialSharedAxis
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -19,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
         val binding = ActivitySplashBinding.inflate(layoutInflater)
         window.exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply {
             addTarget(binding.root)
-            duration = 500L
+            duration = 300L
         }
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

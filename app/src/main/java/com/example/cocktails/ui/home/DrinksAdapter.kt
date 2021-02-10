@@ -9,6 +9,7 @@ import coil.load
 import com.example.cocktails.R
 import com.example.cocktails.data.models.Drink
 import com.example.cocktails.databinding.DrinkItemBinding
+import com.example.cocktails.loadUrl
 import com.example.cocktails.ui.drink_detail.DrinkDetailActivity
 
 class DrinksAdapter(private var drinks: List<Drink>, private val activity: HomeActivity) : RecyclerView.Adapter<DrinksViewHolder>(){
@@ -31,10 +32,7 @@ class DrinksAdapter(private var drinks: List<Drink>, private val activity: HomeA
             }
             drinkName.text = drinks[position].drinkName
             drinkGlass.text = drinks[position].glass
-            drinkThumb.load(drinks[position].drinkThumb){
-                placeholder(R.drawable.loader)
-                error(R.drawable.ic_image_failed)
-            }
+            drinkThumb.loadUrl(drinks[position].drinkThumb)
         }
     }
 

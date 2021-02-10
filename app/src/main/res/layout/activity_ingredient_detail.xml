@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:transitionName="Ingredient to detail"
     android:background="?attr/colorPrimary"
     tools:context=".ui.ingredient_detail.IngredientDetailActivity">
 
@@ -20,9 +19,10 @@
     <ImageView
         android:id="@+id/ingredient_thumb"
         android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
+        android:transitionName="Ingredient image"
         android:contentDescription="@string/ingredient_thumb"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
+        android:transitionName="Ingredient name"
         android:fontFamily="@font/gotham_bold"
         android:textColor="?attr/colorOnPrimary"
         android:textSize="20sp"

@@ -1,8 +1,9 @@
 package com.example.cocktails.ui.drink_detail
 
-import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.app.ActivityOptions
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.DecelerateInterpolator
@@ -10,11 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import coil.load
 import com.example.cocktails.R
+import com.example.cocktails.animatePropertyValueHolder
 import com.example.cocktails.data.Repository
 import com.example.cocktails.data.local.DrinksDb
 import com.example.cocktails.databinding.ActivityDrinkDetailBinding
+import com.example.cocktails.loadUrl
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import kotlinx.coroutines.*
@@ -34,6 +36,7 @@ class DrinkDetailActivity : AppCompatActivity() {
             addTarget(binding.root)
             duration = 300L
         }
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -46,8 +49,15 @@ class DrinkDetailActivity : AppCompatActivity() {
         if (viewModel.drink == null) viewModel.drink = intent.getParcelableExtra("drink")
 
         binding.apply {
-            drinkThumb.load(viewModel.drink?.drinkThumb){
-                placeholder(R.drawable.loader)
+            drinkThumb.apply {
+                loadUrl(viewModel.drink?.drinkThumb)
+                setOnClickListener {
+                    val imageIntent = Intent(this@DrinkDetailActivity, DrinkImageActivity::class.java)
+                    imageIntent.putExtra("imageUrl", viewModel.drink!!.drinkThumb)
+                    val options = ActivityOptions.makeSceneTransitionAnimation(this@DrinkDetailActivity,
+                            this, getString(R.string.drink_thumb))
+                    startActivity(imageIntent, options.toBundle())
+                }
             }
             drinkName.text = viewModel.drink?.drinkName
             drinkGlass.text = viewModel.drink?.glass
@@ -62,24 +72,9 @@ class DrinkDetailActivity : AppCompatActivity() {
             delay(350L)
             val fade = PropertyValuesHolder.ofFloat(View.ALPHA, 0F, 1F)
             val moveUp = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 100F, 0F)
-            val ingredientAnim = ObjectAnimator.ofPropertyValuesHolder(binding.ingredients, fade, moveUp).apply {
-                duration = 300L
-                interpolator = DecelerateInterpolator()
-            }
-            val ingredientLabelAnim = ObjectAnimator.ofPropertyValuesHolder(binding.ingredientsLabel, fade, moveUp).apply {
-                duration = 300L
-                interpolator = DecelerateInterpolator()
-            }
-            val instructionsLabelAnim = ObjectAnimator.ofPropertyValuesHolder(binding.instructionsLabel, fade, moveUp).apply {
-                duration = 300L
-                interpolator = DecelerateInterpolator()
-            }
-            val instructionsAnim = ObjectAnimator.ofPropertyValuesHolder(binding.instructions, fade, moveUp).apply {
-                duration = 300L
-                interpolator = DecelerateInterpolator()
-            }
-            val animSet = AnimatorSet()
-            animSet.playTogether(ingredientAnim, ingredientLabelAnim, instructionsLabelAnim, instructionsAnim)
+            val animSet = animatePropertyValuesHolder(listOf(binding.ingredients, binding.ingredientsLabel,
+                binding.instructionsLabel, binding.instructions), fade, moveUp)
+            animSet.start()
 
             var firstFetch = true
             viewModel.fetchIngredients.observe(this@DrinkDetailActivity, {
@@ -92,12 +87,12 @@ class DrinkDetailActivity : AppCompatActivity() {
                         }
                         1 -> {
                             binding.ingredientsLabel.text = getString(R.string.ingredient)
-                            binding.ingredients.adapter = SmallIngredientAdapter(it)
+                            binding.ingredients.adapter = SmallIngredientAdapter(it, this@DrinkDetailActivity)
                             animSet.start()
                         }
                         else -> {
                             binding.ingredientsLabel.text = getString(R.string.ingredients)
-                            binding.ingredients.adapter = SmallIngredientAdapter(it)
+                            binding.ingredients.adapter = SmallIngredientAdapter(it, this@DrinkDetailActivity)
                             animSet.start()
                         }
                     }
@@ -105,7 +100,7 @@ class DrinkDetailActivity : AppCompatActivity() {
                 else {
                     if (it.size > 1){
                         binding.ingredientsLabel.text = getString(R.string.ingredients)
-                        binding.ingredients.adapter = SmallIngredientAdapter(it)
+                        binding.ingredients.adapter = SmallIngredientAdapter(it, this@DrinkDetailActivity)
                     }
                 }
             })
