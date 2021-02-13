@@ -67,7 +67,7 @@ class DrinkDetailActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch {
-            delay(350L)
+            delay(400L)
             val fade = PropertyValuesHolder.ofFloat(View.ALPHA, 0F, 1F)
             val moveUp = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 100F, 0F)
             val animSet = animatePropertyValuesHolder(listOf(binding.ingredients, binding.ingredientsLabel,
