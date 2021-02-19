@@ -6,14 +6,12 @@ import android.util.Pair
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.example.cocktails.R
 import com.example.cocktails.data.models.Ingredient
 import com.example.cocktails.databinding.SmallIngredientItemBinding
 import com.example.cocktails.loadUrl
 import com.example.cocktails.ui.ingredient_detail.IngredientDetailActivity
 
-class SmallIngredientAdapter(var ingredients: List<Ingredient>, private val activity: DrinkDetailActivity): RecyclerView.Adapter<SmallIngredientAdapter.SmallIngredientViewHolder>() {
+class SmallIngredientAdapter(private val activity: DrinkDetailActivity, var ingredients: List<Ingredient>): RecyclerView.Adapter<SmallIngredientAdapter.SmallIngredientViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SmallIngredientViewHolder =
         SmallIngredientViewHolder(SmallIngredientItemBinding.inflate(LayoutInflater.from(parent.context)))
 

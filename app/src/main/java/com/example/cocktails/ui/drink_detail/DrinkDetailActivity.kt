@@ -47,6 +47,9 @@ class DrinkDetailActivity : AppCompatActivity() {
         if (viewModel.drink == null) viewModel.drink = intent.getParcelableExtra("drink")
 
         binding.apply {
+            instructionsLabel.alpha = 0F
+            instructions.alpha = 0F
+            ingredientsLabel.alpha = 0F
             drinkThumb.apply {
                 loadUrl(viewModel.drink?.drinkThumb)
                 setOnClickListener {
@@ -59,11 +62,7 @@ class DrinkDetailActivity : AppCompatActivity() {
             }
             drinkName.text = viewModel.drink?.drinkName
             drinkGlass.text = viewModel.drink?.glass
-            instructionsLabel.alpha = 0F
-            instructions.alpha = 0F
-            ingredientsLabel.alpha = 0F
             ingredients.layoutManager = GridLayoutManager(this@DrinkDetailActivity, 3)
-            instructions.text = viewModel.drink?.instructions
         }
 
         lifecycleScope.launch {
@@ -80,17 +79,29 @@ class DrinkDetailActivity : AppCompatActivity() {
                     firstFetch = false
                     when (it.size) {
                         0 -> {
-                            binding.ingredientsLabel.text = getString(R.string.ingredient_absent)
+                            binding.apply {
+                                ingredientsLabel.text = getString(R.string.ingredient_absent)
+                                instructionsLabel.text = getString(R.string.instructions)
+                                instructions.text = viewModel.drink?.instructions
+                            }
                             animSet.start()
                         }
                         1 -> {
-                            binding.ingredientsLabel.text = getString(R.string.ingredient)
-                            binding.ingredients.adapter = SmallIngredientAdapter(it, this@DrinkDetailActivity)
+                            binding.apply {
+                                ingredientsLabel.text = getString(R.string.ingredient)
+                                ingredients.adapter = SmallIngredientAdapter(this@DrinkDetailActivity, it)
+                                instructionsLabel.text = getString(R.string.instructions)
+                                instructions.text = viewModel.drink?.instructions
+                            }
                             animSet.start()
                         }
                         else -> {
-                            binding.ingredientsLabel.text = getString(R.string.ingredients)
-                            binding.ingredients.adapter = SmallIngredientAdapter(it, this@DrinkDetailActivity)
+                            binding.apply {
+                                ingredientsLabel.text = getString(R.string.ingredients)
+                                ingredients.adapter = SmallIngredientAdapter(this@DrinkDetailActivity, it)
+                                instructionsLabel.text = getString(R.string.instructions)
+                                instructions.text = viewModel.drink?.instructions
+                            }
                             animSet.start()
                         }
                     }
@@ -98,7 +109,7 @@ class DrinkDetailActivity : AppCompatActivity() {
                 else {
                     if (it.size > 1){
                         binding.ingredientsLabel.text = getString(R.string.ingredients)
-                        binding.ingredients.adapter = SmallIngredientAdapter(it, this@DrinkDetailActivity)
+                        binding.ingredients.adapter = SmallIngredientAdapter(this@DrinkDetailActivity, it)
                     }
                 }
             })

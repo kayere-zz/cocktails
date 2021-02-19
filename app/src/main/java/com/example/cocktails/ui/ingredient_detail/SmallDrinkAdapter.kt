@@ -1,4 +1,4 @@
-package com.example.cocktails.ui.home
+package com.example.cocktails.ui.ingredient_detail
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cocktails.data.models.Drink
-import com.example.cocktails.databinding.DrinkItemBinding
+import com.example.cocktails.databinding.SmallDrinkItemBinding
 import com.example.cocktails.loadUrl
 import com.example.cocktails.ui.drink_detail.DrinkDetailActivity
 
-class DrinksAdapter(private val activity: HomeActivity, private var drinks: List<Drink>) : RecyclerView.Adapter<DrinksViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinksViewHolder =
-        DrinksViewHolder(DrinkItemBinding.inflate(LayoutInflater.from(activity)))
+class SmallDrinkAdapter(private val activity: IngredientDetailActivity, var drinks: List<Drink>): RecyclerView.Adapter<SmallDrinkAdapter.SmallDrinkViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SmallDrinkViewHolder =
+            SmallDrinkViewHolder(SmallDrinkItemBinding.inflate(LayoutInflater.from(parent.context)))
 
-    override fun onBindViewHolder(holder: DrinksViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SmallDrinkViewHolder, position: Int) {
         holder.binding.apply {
             drinkCard.transitionName = "card$position to detail"
             drinkCard.setOnClickListener {
@@ -35,6 +35,6 @@ class DrinksAdapter(private val activity: HomeActivity, private var drinks: List
     }
 
     override fun getItemCount(): Int = if (drinks.size > 20) 20 else drinks.size
-}
 
-class DrinksViewHolder(val binding: DrinkItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class SmallDrinkViewHolder(val binding: SmallDrinkItemBinding): RecyclerView.ViewHolder(binding.root)
+}

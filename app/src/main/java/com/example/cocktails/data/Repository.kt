@@ -8,6 +8,7 @@ import com.example.cocktails.data.models.Ingredient
 import com.example.cocktails.data.models.Ingredients
 import com.example.cocktails.data.network.CocktailDbService
 import kotlinx.coroutines.flow.Flow
+import java.util.*
 
 class Repository(private val drinksDao: DrinksDao, private val ingredientsDao: IngredientsDao) {
     private val api = CocktailDbService.api
@@ -24,7 +25,7 @@ class Repository(private val drinksDao: DrinksDao, private val ingredientsDao: I
 
     suspend fun lookupIngredient(id: Int): Ingredients = api.lookupIngredient(id)
 
-    suspend fun addIngredient(ingredient: Ingredient): Long = ingredientsDao.addIngredient(ingredient)
+    suspend fun addIngredient(ingredient: Ingredient) = ingredientsDao.addIngredient(ingredient)
 
     fun getIngredients(): Flow<List<Ingredient>> = ingredientsDao.getIngredients()
 
@@ -40,7 +41,7 @@ class Repository(private val drinksDao: DrinksDao, private val ingredientsDao: I
 
     suspend fun getAlcoholicDrinks(alcohol: String): List<Drink> = drinksDao.getAlcoholicDrinks(alcohol)
 
-    suspend fun getIngredientByName(name: String): Ingredient? = ingredientsDao.getIngredientByName(name)
+    suspend fun getIngredientByName(name: String): Ingredient? = ingredientsDao.getIngredientByName(name.toLowerCase(Locale.ROOT))
 
     suspend fun searchIngredient(name: String): Ingredients = api.searchIngredient(name)
 }

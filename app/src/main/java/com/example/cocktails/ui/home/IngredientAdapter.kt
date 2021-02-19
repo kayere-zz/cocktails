@@ -16,7 +16,7 @@ import com.example.cocktails.databinding.IngredientItemBinding
 import com.example.cocktails.loadUrl
 import com.example.cocktails.ui.ingredient_detail.IngredientDetailActivity
 
-class IngredientAdapter(var ingredients: List<Ingredient>, private val activity: HomeActivity): RecyclerView.Adapter<IngredientAdapter.IngredientViewHolder>() {
+class IngredientAdapter(private val activity: HomeActivity, var ingredients: List<Ingredient>): RecyclerView.Adapter<IngredientAdapter.IngredientViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientViewHolder =
         IngredientViewHolder(IngredientItemBinding.inflate(LayoutInflater.from(parent.context)))
 

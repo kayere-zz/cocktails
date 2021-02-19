@@ -97,7 +97,6 @@
                 android:layout_height="wrap_content"
                 android:alpha="0.8"
                 android:fontFamily="@font/gotham_bold"
-                android:text="@string/instructions"
                 android:textColor="?attr/colorOnPrimary"
                 android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="@+id/drink_glass"

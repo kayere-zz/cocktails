@@ -10,18 +10,13 @@ import android.widget.ImageView
 import coil.load
 import com.example.cocktails.data.models.Drink
 
+// EXTENSION FUNCTIONS
 // Get ingredient names from the drink
 fun Drink.getIngredientNames(): Set<String> =
-    this.toString().split(" ")
-            .filter { it.contains("ingredient") }
-            .dropLast(1)
-            .map {
-                it.replace(",", "")
-                it.split("=")[1]
-            }
-            .map { it.replace(",", "") }
-            .filter { it != "null" }
-            .toSortedSet()
+    this.toString().split(", ")
+            .filter { it.contains("ingredient") && !it.contains("null") }
+            .map { it.split("=")[1] }
+            .toSet()
 
 fun ImageView.loadUrl(url: String?) {
     this.load(url){
