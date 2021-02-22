@@ -33,15 +33,23 @@ class Repository(private val drinksDao: DrinksDao, private val ingredientsDao: I
 
     suspend fun getCount(): Int = drinksDao.getCount()
 
-    fun filterDrinkByCategory(category: String): Flow<List<Drink>> = drinksDao.filterDrinkByCategory(category)
+    fun filterDrinkByCategory(category: String): Flow<List<Drink>> =
+        drinksDao.filterDrinkByCategory(category)
 
-    fun filterDrinkByAlcohol(alcohol: String): Flow<List<Drink>> = drinksDao.filterDrinkByAlcohol(alcohol)
+    fun filterDrinkByAlcohol(alcohol: String): Flow<List<Drink>> =
+        drinksDao.filterDrinkByAlcohol(alcohol)
 
-    suspend fun filterHomeDrinkByCategory(category: String): List<Drink> = drinksDao.filterHomeDrinksByCategory(category)
+    suspend fun filterHomeDrinkByCategory(category: String): List<Drink> =
+        drinksDao.filterHomeDrinksByCategory(category)
 
-    suspend fun getAlcoholicDrinks(alcohol: String): List<Drink> = drinksDao.getAlcoholicDrinks(alcohol)
+    suspend fun getAlcoholicDrinks(alcohol: String): List<Drink> =
+        drinksDao.getAlcoholicDrinks(alcohol)
 
-    suspend fun getIngredientByName(name: String): Ingredient? = ingredientsDao.getIngredientByName(name.toLowerCase(Locale.ROOT))
+    suspend fun getIngredientByName(name: String): Ingredient? =
+        ingredientsDao.getIngredientByName(name.toLowerCase(Locale.ROOT))
 
     suspend fun searchIngredient(name: String): Ingredients = api.searchIngredient(name)
+
+    fun getDrinksWithIngredient(ingredient: String): Flow<List<Drink>> =
+        drinksDao.getDrinksWithIngredient(ingredient.toLowerCase(Locale.ROOT))
 }

@@ -14,8 +14,11 @@ import com.example.cocktails.data.models.Drink
 // Get ingredient names from the drink
 fun Drink.getIngredientNames(): Set<String> =
     this.toString().split(", ")
-            .filter { it.contains("ingredient") && !it.contains("null") }
-            .map { it.split("=")[1] }
+            .filter { it.contains("ingredient") && !it.contains("instructions") && !it.contains("null") }
+            .map {
+                if (it.split("=").size == 2) it.split("=")[1]
+                else ""
+            }
             .toSet()
 
 fun ImageView.loadUrl(url: String?) {
@@ -35,3 +38,19 @@ fun animatePropertyValuesHolder(views: List<View>, vararg values: PropertyValues
     animSet.playTogether(animators)
     return animSet
 }
+
+const val query = "SELECT * FROM drinks_table WHERE :ingredient IN (LOWER(ingredient1), " +
+        "LOWER(ingredient2), " +
+        "LOWER(ingredient3), " +
+        "LOWER(ingredient4), " +
+        "LOWER(ingredient5), " +
+        "LOWER(ingredient6), " +
+        "LOWER(ingredient7), " +
+        "LOWER(ingredient8), " +
+        "LOWER(ingredient9), " +
+        "LOWER(ingredient10), " +
+        "LOWER(ingredient11), " +
+        "LOWER(ingredient12), " +
+        "LOWER(ingredient13), " +
+        "LOWER(ingredient14), " +
+        "LOWER(ingredient15)) "

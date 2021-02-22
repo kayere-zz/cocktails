@@ -19,6 +19,6 @@ interface IngredientsDao {
     @Query("SELECT * FROM ingredient_table")
     suspend fun getHomeIngredients(): List<Ingredient>
 
-    @Query("SELECT * FROM ingredient_table WHERE LOWER(name) = :name")
+    @Query("SELECT * FROM ingredient_table WHERE LOWER(name) LIKE :name")
     suspend fun getIngredientByName(name: String): Ingredient?
 }

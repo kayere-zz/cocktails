@@ -22,7 +22,7 @@ data class Ingredient(
     @SerializedName("strType")
     val type: String?,
     var thumb: String?
-): Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString(),

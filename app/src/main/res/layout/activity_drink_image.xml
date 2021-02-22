@@ -11,11 +11,11 @@
         android:id="@+id/drink_thumb"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/drink_thumb"
         android:transitionName="@string/drink_thumb"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic"
-        android:contentDescription="@string/drink_thumb" />
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 </androidx.constraintlayout.widget.ConstraintLayout>

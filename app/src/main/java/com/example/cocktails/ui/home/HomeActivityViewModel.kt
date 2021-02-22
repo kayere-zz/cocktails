@@ -7,22 +7,31 @@ import com.example.cocktails.data.Repository
 import com.example.cocktails.data.models.Drink
 import com.example.cocktails.data.models.Ingredient
 
-class HomeActivityViewModel(private val repository: Repository, private val context: Context): ViewModel() {
+class HomeActivityViewModel(private val repository: Repository, private val context: Context) :
+    ViewModel() {
 
-    suspend fun homeDrinks(): List<Drink> = repository.drinks()
+    suspend fun getHomeDrinks(): List<Drink> = repository.drinks()
+    var homeDrinks: List<Drink>? = null
     suspend fun alcoholDrinks(): List<Drink> = repository.getAlcoholicDrinks("Non Alcoholic")
     suspend fun nonAlcoholDrinks(): List<Drink> = repository.getAlcoholicDrinks("Non Alcoholic")
-    suspend fun cocktails(): List<Drink> = repository.filterHomeDrinkByCategory("Cocktail")
-    suspend fun ordinaryDrinks(): List<Drink> = repository.filterHomeDrinkByCategory("Ordinary Drink")
-    suspend fun ingredients(): List<Ingredient> = repository.getHomeIngredients()
+    suspend fun getCocktails(): List<Drink> = repository.filterHomeDrinkByCategory("Cocktail")
+    var cocktails: List<Drink>? = null
+    suspend fun getOrdinaryDrinks(): List<Drink> =
+        repository.filterHomeDrinkByCategory("Ordinary Drink")
+    var ordinaryDrinks: List<Drink>? = null
 
+    suspend fun getIngredients(): List<Ingredient> = repository.getHomeIngredients()
+    var ingredients: List<Ingredient>? = null
 }
 
-class HomeActivityViewModelFactory(private val repository: Repository, private val context: Context):
-    ViewModelProvider.Factory{
+class HomeActivityViewModelFactory(
+    private val repository: Repository,
+    private val context: Context
+) :
+    ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeActivityViewModel::class.java)){
+        if (modelClass.isAssignableFrom(HomeActivityViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return HomeActivityViewModel(repository, context) as T
         }

@@ -11,41 +11,43 @@ import com.example.cocktails.R
 import com.example.cocktails.animatePropertyValuesHolder
 import com.example.cocktails.data.Repository
 import com.example.cocktails.data.local.DrinksDb
+import com.example.cocktails.data.models.Ingredient
 import com.example.cocktails.databinding.ActivityIngredientDetailBinding
 import com.example.cocktails.loadUrl
-import com.example.cocktails.ui.home.DrinksAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class IngredientDetailActivity : AppCompatActivity() {
+    lateinit var ingredient: Ingredient
     override fun onCreate(savedInstanceState: Bundle?) {
         val binding = ActivityIngredientDetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        ingredient = intent.getParcelableExtra("ingredient")!!
         val db = DrinksDb.getDatabase(this)
         val repository = Repository(db.drinkDao(), db.ingredientsDao())
         val viewModel = ViewModelProvider(this, IngredientDetailViewModelFactory(repository))
                 .get(IngredientDetailViewModel::class.java)
-        if (viewModel.ingredient == null) viewModel.ingredient = intent.getParcelableExtra("ingredient")
 
         binding.apply {
-            ingredientName.text = viewModel.ingredient?.name
-            ingredientThumb.loadUrl(viewModel.ingredient?.thumb)
-            description.text = viewModel.ingredient?.description
+            ingredientName.text = ingredient.name
+            ingredientThumb.loadUrl(ingredient.thumb)
+            description.text = ingredient.description
             drinksLabel.alpha = 0F
             description.alpha = 0F
             descriptionLabel.alpha = 0F
-            viewModel.ingredient?.description?.let {
+            ingredient.description?.let {
                 descriptionLabel.text = getString(R.string.description)
-                ingredientType.text = viewModel.ingredient?.type
+                ingredientType.text = ingredient.type
             }
             drinks.layoutManager = GridLayoutManager(this@IngredientDetailActivity, 2)
-            viewModel.drinks.observe(this@IngredientDetailActivity, {
-                drinks.adapter = SmallDrinkAdapter(this@IngredientDetailActivity, it)
-            })
         }
+
+        viewModel.drinks.observe(this@IngredientDetailActivity, { drinkList ->
+            binding.drinks.adapter = SmallDrinkAdapter(drinkList)
+        })
 
         lifecycleScope.launch(Dispatchers.Main){
             delay(350)

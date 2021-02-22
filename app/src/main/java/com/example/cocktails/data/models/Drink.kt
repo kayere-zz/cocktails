@@ -119,7 +119,7 @@ data class Drink(
     val tags: String?,
     @SerializedName("strVideo")
     val video: String?
-): Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString()!!,

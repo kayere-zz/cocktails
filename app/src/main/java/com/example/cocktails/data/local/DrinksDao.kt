@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.cocktails.data.models.Drink
+import com.example.cocktails.query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -36,4 +37,7 @@ interface DrinksDao {
 
     @Query("SELECT * FROM drinks_table WHERE category LIKE :category")
     suspend fun filterHomeDrinksByCategory(category:String): List<Drink>
+
+    @Query(query)
+    fun getDrinksWithIngredient(ingredient: String): Flow<List<Drink>>
 }

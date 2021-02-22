@@ -8,7 +8,7 @@ import com.example.cocktails.data.models.Drink
 import com.example.cocktails.data.models.Ingredient
 
 @Database(entities = [Drink::class, Ingredient::class], version = 1)
-abstract class DrinksDb: RoomDatabase() {
+abstract class DrinksDb : RoomDatabase() {
     abstract fun drinkDao(): DrinksDao
     abstract fun ingredientsDao(): IngredientsDao
 

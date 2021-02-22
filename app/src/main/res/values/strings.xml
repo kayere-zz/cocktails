@@ -27,4 +27,6 @@
     <string name="instructions">Instructions</string>
     <string name="description">Description</string>
     <string name="close_button">close button</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

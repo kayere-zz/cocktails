@@ -11,12 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cocktails">
-        <activity android:name=".ui.drink_detail.DrinkImageActivity" android:theme="@style/Theme.cocktails.drinkImage"/>
-        <activity android:name=".ui.ingredient_detail.IngredientDetailActivity"/>
-        <activity android:name=".ui.home.HomeActivity" />
         <activity
-            android:name=".ui.drink_detail.DrinkDetailActivity"
-            android:theme="@style/Theme.CocktailsTranslucentStatusBar" />
+            android:name=".ui.drink_detail.DrinkImageActivity"
+            android:theme="@style/Theme.cocktails.drinkImage" />
+        <activity android:name=".ui.ingredient_detail.IngredientDetailActivity" />
+        <activity android:name=".ui.home.HomeActivity" />
         <activity
             android:name=".ui.splash_screen.SplashActivity"
             android:theme="@style/Theme.CocktailSplashScreen">

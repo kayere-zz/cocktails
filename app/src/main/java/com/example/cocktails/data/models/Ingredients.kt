@@ -1,4 +1,5 @@
 package com.example.cocktails.data.models
+
 import com.google.gson.annotations.SerializedName
 
 

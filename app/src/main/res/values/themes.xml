@@ -16,6 +16,7 @@
 
         <!-- Customize your theme here. -->
     </style>
+
     <style name="Theme.CocktailsTranslucentStatusBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryColor</item>

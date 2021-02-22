@@ -20,6 +20,7 @@
         <item name="android:windowActivityTransitions">true</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="Theme.CocktailsTranslucentStatusBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryColor</item>
@@ -38,6 +39,7 @@
         <item name="android:windowActivityTransitions">true</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="Theme.CocktailSplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:background">@color/primaryColor</item>
         <item name="android:windowActivityTransitions">true</item>

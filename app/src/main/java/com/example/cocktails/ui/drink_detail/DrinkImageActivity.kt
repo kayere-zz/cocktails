@@ -1,11 +1,7 @@
 package com.example.cocktails.ui.drink_detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.WindowManager
-import coil.load
-import com.example.cocktails.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cocktails.databinding.ActivityDrinkImageBinding
 import com.example.cocktails.loadUrl
 

@@ -13,7 +13,10 @@ import com.example.cocktails.getIngredientNames
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 
-class DrinkDetailActivityViewModel(private val repository: Repository, private val context: Context): ViewModel() {
+class DrinkDetailFragmentViewModel(
+    private val repository: Repository,
+    private val context: Context
+) : ViewModel() {
 
     var drink: Drink? = null
 
@@ -28,12 +31,11 @@ class DrinkDetailActivityViewModel(private val repository: Repository, private v
             else unAvailableIngredients.add(name)
         }
         emit(ingredients.toList())
-        for (unAvailableIngredient in unAvailableIngredients){
+        for (unAvailableIngredient in unAvailableIngredients) {
             var ingredient: Ingredient? = null
             try {
                 ingredient = repository.searchIngredient(unAvailableIngredient).ingredients?.get(0)
-            }
-            catch (e: Exception){
+            } catch (e: Exception) {
                 Toast.makeText(context, "Could not load all ingredients", Toast.LENGTH_SHORT).show()
             }
             ingredient?.let {
@@ -43,18 +45,24 @@ class DrinkDetailActivityViewModel(private val repository: Repository, private v
                 Log.d("TAG", "$unAvailableIngredient: $it")
                 repository.addIngredient(it)
                 delay(1000)
-                Log.d("TAG", "$unAvailableIngredient: ${repository.getIngredientByName(unAvailableIngredient)}")
+                Log.d(
+                    "TAG",
+                    "$unAvailableIngredient: ${repository.getIngredientByName(unAvailableIngredient)}"
+                )
             }
         }
     }.asLiveData()
 
 }
 
-class DrinkDetailActivityViewModelFactory(private val repository: Repository, private val context: Context): ViewModelProvider.Factory{
+class DrinkDetailFragmentViewModelFactory(
+    private val repository: Repository,
+    private val context: Context
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DrinkDetailActivityViewModel::class.java)){
+        if (modelClass.isAssignableFrom(DrinkDetailFragmentViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return DrinkDetailActivityViewModel(repository, context) as T
+            return DrinkDetailFragmentViewModel(repository, context) as T
         }
         throw IllegalArgumentException("Unknown view model class")
     }

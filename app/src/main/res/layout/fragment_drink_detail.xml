@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:transitionName="card to detail"
     android:background="?attr/colorPrimary"
-    app:layoutDescription="@xml/activity_drink_detail_scene"
-    tools:context=".ui.drink_detail.DrinkDetailActivity">
+    android:transitionName="detail page"
+    app:layoutDescription="@xml/fragment_drink_detail_scene"
+    tools:context=".ui.drink_detail.DrinkDetailFragment">
 
     <ImageView
         android:id="@+id/drink_thumb"
