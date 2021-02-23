@@ -1,10 +1,10 @@
 package com.example.cocktails.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -13,7 +13,7 @@ import com.example.cocktails.R
 import com.example.cocktails.data.Repository
 import com.example.cocktails.data.local.DrinksDb
 import com.example.cocktails.databinding.FragmentHomeBinding
-import com.google.android.material.transition.Hold
+import com.google.android.material.transition.MaterialElevationScale
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -22,7 +22,8 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: HomeActivityViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        exitTransition = Hold()
+        exitTransition = MaterialElevationScale(false)
+        reenterTransition = MaterialElevationScale(true)
         val db = DrinksDb.getDatabase(this.requireContext())
         val repository = Repository(db.drinkDao(), db.ingredientsDao())
         viewModel =
@@ -40,14 +41,14 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        requireContext().theme.applyStyle(R.style.Theme_Cocktails, true)
-        binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        postponeEnterTransition()
+        view.doOnPreDraw { startPostponedEnterTransition() }
         lifecycleScope.launch {
             binding.apply {
                 drinks.adapter = DrinksAdapter(viewModel.homeDrinks!!, findNavController())
@@ -55,8 +56,19 @@ class HomeFragment : Fragment() {
                 ordinaryDrinks.adapter =
                     DrinksAdapter(viewModel.ordinaryDrinks!!, findNavController())
                 ingredients.adapter =
-                    IngredientAdapter(HomeActivity(), viewModel.ingredients!!)
+                    IngredientAdapter(viewModel.ingredients!!, findNavController())
+                toolBar.setOnMenuItemClickListener { menuItem ->
+                    when(menuItem.itemId) {
+                        R.id.settings -> {
+                            val options = HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
+                            findNavController().navigate(options)
+                            true
+                        }
+                        else -> false
+                    }
+                }
             }
         }
     }
+
 }

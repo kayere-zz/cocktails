@@ -12,6 +12,12 @@
         <action
             android:id="@+id/action_homeFragment_to_drinkDetailFragment"
             app:destination="@id/drinkDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ingredientDetailFragment"
+            app:destination="@id/ingredientDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/drinkDetailFragment"
@@ -22,4 +28,17 @@
             android:name="Drink"
             app:argType="com.example.cocktails.data.models.Drink" />
     </fragment>
+    <fragment
+        android:id="@+id/ingredientDetailFragment"
+        android:name="com.example.cocktails.ui.ingredient_detail.IngredientDetailFragment"
+        android:label="fragment_ingredient_detail"
+        tools:layout="@layout/fragment_ingredient_detail" >
+        <argument
+            android:name="ingredeint"
+            app:argType="com.example.cocktails.data.models.Ingredient" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.cocktails.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

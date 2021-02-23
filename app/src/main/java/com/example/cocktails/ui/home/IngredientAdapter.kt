@@ -1,17 +1,18 @@
 package com.example.cocktails.ui.home
 
-import android.app.ActivityOptions
-import android.content.Intent
-import android.util.Pair
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cocktails.data.models.Ingredient
 import com.example.cocktails.databinding.IngredientItemBinding
 import com.example.cocktails.loadUrl
-import com.example.cocktails.ui.ingredient_detail.IngredientDetailActivity
 
-class IngredientAdapter(private val activity: HomeActivity, var ingredients: List<Ingredient>) :
+class IngredientAdapter(
+    var ingredients: List<Ingredient>,
+    private val navController: NavController
+) :
     RecyclerView.Adapter<IngredientAdapter.IngredientViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientViewHolder =
         IngredientViewHolder(IngredientItemBinding.inflate(LayoutInflater.from(parent.context)))
@@ -19,17 +20,22 @@ class IngredientAdapter(private val activity: HomeActivity, var ingredients: Lis
 
     override fun onBindViewHolder(holder: IngredientViewHolder, position: Int) {
         holder.binding.apply {
-            ingredientName.text = ingredients[position].name
-            ingredientThumb.loadUrl(ingredients[position].thumb)
+            ingredientName.apply {
+                text = ingredients[position].name
+                transitionName = "Ingredient${ingredients[position].ingredientId} name"
+            }
+            ingredientThumb.apply {
+                loadUrl(ingredients[position].thumb)
+                transitionName = "Ingredient${ingredients[position].ingredientId} image"
+            }
             ingredientCard.setOnClickListener {
-                val ingredientIntent = Intent(activity, IngredientDetailActivity::class.java)
-                ingredientIntent.putExtra("ingredient", ingredients[position])
-                val options = ActivityOptions.makeSceneTransitionAnimation(
-                    activity,
-                    Pair(ingredientThumb, "Ingredient image"),
-                    Pair(ingredientName, "Ingredient name")
+                val options =
+                    HomeFragmentDirections.actionHomeFragmentToIngredientDetailFragment(ingredients[position])
+                val extras = FragmentNavigatorExtras(
+                    ingredientThumb to "Ingredient image",
+                    ingredientName to "Ingredient name"
                 )
-                activity.startActivity(ingredientIntent, options.toBundle())
+                navController.navigate(options, extras)
             }
         }
     }

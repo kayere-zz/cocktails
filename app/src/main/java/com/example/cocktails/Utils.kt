@@ -39,7 +39,8 @@ fun animatePropertyValuesHolder(views: List<View>, vararg values: PropertyValues
     return animSet
 }
 
-const val query = "SELECT * FROM drinks_table WHERE :ingredient IN (LOWER(ingredient1), " +
+const val query = "SELECT * FROM drinks_table WHERE :ingredient IN " +
+        "(LOWER(ingredient1), " +
         "LOWER(ingredient2), " +
         "LOWER(ingredient3), " +
         "LOWER(ingredient4), " +
@@ -53,4 +54,4 @@ const val query = "SELECT * FROM drinks_table WHERE :ingredient IN (LOWER(ingred
         "LOWER(ingredient12), " +
         "LOWER(ingredient13), " +
         "LOWER(ingredient14), " +
-        "LOWER(ingredient15)) "
+        "LOWER(ingredient15))"

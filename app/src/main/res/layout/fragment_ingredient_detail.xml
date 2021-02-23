@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
     app:layoutDescription="@xml/activity_ingredient_detail_scene"
-    tools:context=".ui.ingredient_detail.IngredientDetailActivity">
+    tools:context=".ui.ingredient_detail.IngredientDetailFragment">
 
     <ImageView
         android:id="@+id/close"

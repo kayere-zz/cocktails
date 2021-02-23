@@ -18,11 +18,11 @@ class DrinksAdapter(private var drinks: List<Drink>, private val navController: 
 
     override fun onBindViewHolder(holder: DrinksViewHolder, position: Int) {
         holder.binding.apply {
-            root.transitionName = "card $position to detail"
+            root.transitionName = "drink ${drinks[position].drinkId} on $position to detail"
             root.setOnClickListener {
-                val bundle = bundleOf("Drink" to drinks[position])
+                val options = HomeFragmentDirections.actionHomeFragmentToDrinkDetailFragment(drinks[position])
                 val extras = FragmentNavigatorExtras(root to "detail page")
-                navController.navigate(R.id.action_homeFragment_to_drinkDetailFragment, bundle, null, extras)
+                navController.navigate(options, extras)
             }
             drinkName.text = drinks[position].drinkName
             drinkGlass.text = drinks[position].glass

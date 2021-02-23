@@ -1,16 +1,18 @@
 package com.example.cocktails.ui.drink_detail
 
 import android.animation.PropertyValuesHolder
-import android.content.Context
+import android.graphics.Color
 import android.graphics.Color.TRANSPARENT
 import android.os.Bundle
+import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cocktails.R
 import com.example.cocktails.animatePropertyValuesHolder
@@ -27,17 +29,20 @@ import kotlinx.coroutines.launch
 class DrinkDetailFragment : Fragment() {
     private lateinit var binding: FragmentDrinkDetailBinding
     private lateinit var viewModel: DrinkDetailFragmentViewModel
+    private val args: DrinkDetailFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         requireActivity().window.decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        Log.d("TAG", "onCreate: ${requireActivity().window.statusBarColor}")
         requireActivity().window.statusBarColor = TRANSPARENT
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition = MaterialContainerTransform().apply {
             setPathMotion(MaterialArcMotion())
+            scrimColor = TRANSPARENT
         }
         sharedElementReturnTransition = MaterialContainerTransform().apply {
-            setPathMotion(MaterialArcMotion())
+            scrimColor = TRANSPARENT
         }
         val db = DrinksDb.getDatabase(requireContext())
         val repository = Repository(db.drinkDao(), db.ingredientsDao())
@@ -48,7 +53,7 @@ class DrinkDetailFragment : Fragment() {
                 requireContext()
             )
         ).get(DrinkDetailFragmentViewModel::class.java)
-        viewModel.drink = arguments?.getParcelable("Drink")
+        viewModel.drink = args.drink
     }
 
     override fun onCreateView(
@@ -135,6 +140,11 @@ class DrinkDetailFragment : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
-        requireActivity().window.clearFlags(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
+        requireActivity().window.decorView.systemUiVisibility = View.VISIBLE
+        val typedValue = TypedValue()
+        requireActivity().theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
+        val color = typedValue.data
+        requireActivity().window.statusBarColor = color
     }
+
 }

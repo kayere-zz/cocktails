@@ -10,7 +10,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         window.enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply {
             addTarget(R.id.home_layout)
-            duration = 300L
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
